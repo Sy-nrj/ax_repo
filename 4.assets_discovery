@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Your file with domains, one per line
+
+domain_list="all_domains.txt"
+
+output_dir="../endoints_enum"
+
+mkdir -p $output_dir
+
+cd $output_dir
+
+for domain in $(cat "$domain_list"); do
+    echo "[*] Processing domain: $domain"
+
+    # Run waymore for the domain, output to waymore.txt (overwrites each time)
+    waymore -d "$domain" -o waymore.txt
+
+    # Run gau for the domain, output to domains_gau.txt (overwrites each time)
+    gau -d "$domain" -o domains_gau.txt
+
+    echo "[+] Done with $domain"
+    echo
+done
