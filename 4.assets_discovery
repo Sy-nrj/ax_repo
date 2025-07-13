@@ -12,13 +12,16 @@ cd $output_dir
 
 for domain in $(cat "$domain_list"); do
     echo "[*] Processing domain: $domain"
-
+    mkdir -o $domain && cd $domain
     # Run waymore for the domain, output to waymore.txt (overwrites each time)
-    waymore -i "$domain" -o waymore.txt
+    waymore -i "$domain" --mc 200,201,202,203,300,301.302.303,400,401,403,500,501,505 -o waymore.txt
 
     # Run gau for the domain, output to domains_gau.txt (overwrites each time)
-    gau -d "$domain" -o domains_gau.txt
+    gau $domain --o domains_gau.txt --mc 200,201,202,203,300,301.302.303,400,401,403,500,501,505
+
+    cat * | sort -u | tee $domain_all_urls.txt
 
     echo "[+] Done with $domain"
     echo
+    cd ..
 done
