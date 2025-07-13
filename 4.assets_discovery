@@ -14,7 +14,7 @@ for domain in $(cat "$domain_list"); do
     echo "[*] Processing domain: $domain"
 
     # Run waymore for the domain, output to waymore.txt (overwrites each time)
-    waymore -d "$domain" -o waymore.txt
+    waymore -i "$domain" -o waymore.txt
 
     # Run gau for the domain, output to domains_gau.txt (overwrites each time)
     gau -d "$domain" -o domains_gau.txt
