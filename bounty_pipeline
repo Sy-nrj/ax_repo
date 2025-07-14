@@ -14,7 +14,7 @@
             "name"          : "scan_id" , 
             "type"          : "string" , 
             "requited"      : true ,
-            "description"   : "Timestamp or unique scan identifier" ,
+            "description"   : "Timestamp or unique scan identifier"
         }
     ] ,
 
