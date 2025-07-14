@@ -17,7 +17,7 @@ for domain in $(cat "$domain_list"); do
     waymore -i "$domain" --mc 200,201,202,203,300,301.302.303,400,401,403,500,501,505 -o waymore.txt
 
     # Run gau for the domain, output to domains_gau.txt (overwrites each time)
-    gau $domain --o domains_gau.txt --mc 200,201,202,203,300,301.302.303,400,401,403,500,501,505
+    gau $domain --o domains_gau.txt --mc 200,201,202,203,300,301,302,303,400,401,403,500,501,502,503,504,505
 
     cat * | sort -u | tee $domain_all_urls.txt
 
