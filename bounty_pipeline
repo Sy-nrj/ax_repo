@@ -1,0 +1,33 @@
+{
+    "name"               : "bounty_pipeline" ,
+    "version"            : "1.0" ,
+    "description"        : "All recon module using pre-installed bash recon tools" , 
+    "entrypoint"         : "/usr/local/bin/bounty_pipeline.sh" , 
+    "arguments"          : [
+        {    
+            "name"          : "domain_list", 
+            "type"          : "file", 
+            "required"      : true, 
+            "description"   : "path to domain list",
+        },
+        {
+            "name"          : "scan_id" , 
+            "type"          : "string" , 
+            "requited"      : true ,
+            "description"   : "Timestamp or unique scan identifier" ,
+        }
+    ] ,
+
+    "requirements"  : [
+        "/usr/local/bin/bounty_pipeline.sh",
+        "/usr/local/bin/subdomain_enumeration.sh",
+        "/usr/local/bin/live_subs.sh",
+        "/usr/local/bin/open_ports.sh",
+        "/usr/local/bin/stack_tech.sh",
+        "/usr/local/bin/asset_discovery.sh",
+        "/usr/local/bin/sort_endpoints.sh",
+        "/usr/local/bin/notifiy.sh",
+        "/usr/local/bin/scan_vulns.sh",
+    ],
+    "output_dir": "~/scan/list_${scan_id}"
+}
