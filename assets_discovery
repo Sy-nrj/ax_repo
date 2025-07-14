@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Your file with domains, one per line
+
+domain_list="live_subs.txt"
+
+output_dir="../endoints"
+
+mkdir -p $output_dir
+
+# Run waymore for the domain, output to waymore.txt (overwrites each time)
+
+waymore -i "$domain_list" --mc 200,201,202,203,300,301.302.303,400,401,403,500,501,502,503,504,505 -o $output_dir/waymore.txt
+
+# Run gau for the domain, output to domains_gau.txt (overwrites each time)
+cat $domain_list  | gau  --mc 200,201,202,203,300,301,302,303,400,401,403,500,501,502,503,504,505 | tee $output_dir/gau.txt
+
+cat * | sort -u | tee $domain_all_urls.txt
+
+    echo "[+] Done with $domain"
+    echo
+    cd ..
+done
