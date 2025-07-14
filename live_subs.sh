@@ -3,6 +3,8 @@
 # Usage: ./check_live_hosts urls.txt
 
 url_list="$1"
+scan_dir="scan_dir"
+
 
 # List of top 20 most used user-agents (July 2025)
 user_agents=(
@@ -30,11 +32,11 @@ user_agents=(
 )
 
 # Output file for alive URLs
-alive_hosts="alive_host.txt"
-> "$alive_hosts"
+subs_list="all_subs.txt"
+> "$subs_list"
 
 # Read URLs from input file
-mapfile -t urls < "$url_list"
+mapfile -t urls < "$subs_list"
 
 # Rotate through user agents
 user_agent_index=0
@@ -46,7 +48,7 @@ for url in "${urls[@]}"; do
   user_agent_index=$(( (user_agent_index + 1) % total_agents ))
   
   # Use httpx to check if the URL is alive
-  httpx -silent -status-code -u "$url" -H "User-Agent: $user_agent" | grep -E '200|201|202|300|301|302|401|403|405|500|501|502|503|504' >> "$alive_urls"
+  httpx -silent -status-code -u "$url" -H "User-Agent: $user_agent" | grep -E '200|201|202|300|301|302|401|403|405|500|501|502|503|504' >> "$live_hosts"
 done
 
-echo "[+] Alive URLs saved in: $alive_urls"
+echo "[+] Alive URLs saved in: $live_hosts"
